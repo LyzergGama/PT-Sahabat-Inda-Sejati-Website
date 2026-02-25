@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PT Sahabat Inda Sejati — Distribusi Kebutuhan Pokok & Tembakau</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --red: #C8102E;
+    --red-dark: #8B0000;
+    --red-light: #E8324F;
+    --black: #0A0A0A;
+    --off-white: #F5F3EF;
+    --gray: #888;
+    --light-gray: #E8E6E2;
+    --transition: 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--off-white);
+    color: var(--black);
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom Cursor */
+  .cursor {
+    position: fixed;
+    width: 12px; height: 12px;
+    background: var(--red);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s, width 0.3s, height 0.3s, background 0.3s;
+    mix-blend-mode: multiply;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 40px; height: 40px;
+    border: 1.5px solid var(--red);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0.6;
+  }
+  body:hover .cursor { opacity: 1; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 24px 60px;
+    mix-blend-mode: multiply;
+    transition: background 0.4s, padding 0.4s;
+  }
+  nav.scrolled {
+    background: rgba(245,243,239,0.95);
+    backdrop-filter: blur(12px);
+    padding: 16px 60px;
+    box-shadow: 0 1px 0 var(--light-gray);
+    mix-blend-mode: normal;
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 2px;
+    color: var(--red);
+    text-decoration: none;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .logo-badge {
+    width: 36px; height: 36px;
+    background: var(--red);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+  .nav-links {
+    display: flex; gap: 40px; list-style: none;
+  }
+  .nav-links a {
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--black);
+    text-decoration: none;
+    position: relative;
+    font-weight: 500;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute; bottom: -4px; left: 0; right: 0;
+    height: 1px; background: var(--red);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .nav-links a:hover { opacity: 1; }
+  .nav-links a:hover::after { transform: scaleX(1); }
+  .nav-cta {
+    background: var(--red);
+    color: white !important;
+    opacity: 1 !important;
+    padding: 10px 24px;
+    border-radius: 2px;
+    letter-spacing: 1px !important;
+    font-weight: 500;
+    transition: background 0.3s !important;
+  }
+  .nav-cta:hover { background: var(--red-dark) !important; }
+  .nav-cta::after { display: none !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-left {
+    background: var(--black);
+    display: flex; flex-direction: column;
+    justify-content: flex-end;
+    padding: 120px 60px 80px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-left::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80') center/cover;
+    opacity: 0.25;
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 24px;
+    position: relative;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 40px; height: 1px;
+    background: var(--red);
+    display: inline-block;
+  }
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(64px, 7vw, 100px);
+    line-height: 0.9;
+    color: white;
+    position: relative;
+    margin-bottom: 32px;
+  }
+  .hero-title span { color: var(--red); }
+  .hero-sub {
+    font-size: 15px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.7;
+    max-width: 380px;
+    position: relative;
+    margin-bottom: 48px;
+  }
+  .hero-actions {
+    display: flex; gap: 16px; align-items: center;
+    position: relative;
+  }
+  .btn-primary {
+    background: var(--red);
+    color: white;
+    padding: 16px 36px;
+    border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.3s, transform 0.3s;
+    border-radius: 2px;
+  }
+  .btn-primary:hover { background: var(--red-light); transform: translateY(-2px); }
+  .btn-ghost {
+    color: white;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-decoration: none;
+    opacity: 0.6;
+    display: flex; align-items: center; gap: 8px;
+    transition: opacity 0.3s;
+  }
+  .btn-ghost:hover { opacity: 1; }
+  .arrow { font-size: 18px; }
+
+  .hero-right {
+    background: var(--off-white);
+    display: flex; flex-direction: column;
+    justify-content: center;
+    padding: 120px 60px 80px;
+    position: relative;
+  }
+  .hero-stats {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-bottom: 48px;
+  }
+  .stat-card {
+    background: white;
+    padding: 36px 28px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s, transform 0.6s;
+  }
+  .stat-card.visible { opacity: 1; transform: translateY(0); }
+  .stat-card:nth-child(1) { transition-delay: 0.1s; }
+  .stat-card:nth-child(2) { transition-delay: 0.2s; }
+  .stat-card:nth-child(3) { transition-delay: 0.3s; }
+  .stat-card:nth-child(4) { transition-delay: 0.4s; }
+  .stat-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    line-height: 1;
+    color: var(--red);
+    margin-bottom: 6px;
+  }
+  .stat-label {
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+  .hero-tagline {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--black);
+    border-left: 3px solid var(--red);
+    padding-left: 20px;
+  }
+
+  /* TICKER */
+  .ticker {
+    background: var(--red);
+    padding: 14px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .ticker-inner {
+    display: inline-flex; gap: 80px;
+    animation: ticker 20s linear infinite;
+  }
+  .ticker-item {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 3px;
+    color: white;
+    display: flex; align-items: center; gap: 20px;
+  }
+  .ticker-dot { width: 6px; height: 6px; background: rgba(255,255,255,0.4); border-radius: 50%; }
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* SECTIONS */
+  section { padding: 120px 60px; }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-label::before {
+    content: ''; width: 30px; height: 1px; background: var(--red);
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 5vw, 80px);
+    line-height: 0.95;
+    margin-bottom: 24px;
+  }
+  .section-title span { color: var(--red); }
+
+  /* ABOUT */
+  .about { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 80px; 
+    align-items: center;
+    background: white;
+  }
+  .about-img-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6px;
+    position: relative;
+  }
+  .about-img-grid::before {
+    content: 'EST.\A2023';
+    white-space: pre;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px;
+    letter-spacing: 3px;
+    position: absolute;
+    top: -40px; left: 0;
+    color: var(--gray);
+  }
+  .about-img {
+    aspect-ratio: 3/4;
+    background: var(--light-gray);
+    overflow: hidden;
+  }
+  .about-img:first-child { margin-top: 40px; }
+  .about-img img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.8s;
+    filter: grayscale(20%);
+  }
+  .about-img:hover img { transform: scale(1.05); }
+  .about-body { font-size: 16px; line-height: 1.85; color: #444; margin-bottom: 24px; }
+  .about-highlight {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--black);
+    border-left: 3px solid var(--red);
+    padding-left: 20px;
+    margin: 32px 0;
+  }
+
+  /* VISION MISSION */
+  .vision-mission {
+    background: var(--black);
+    color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    padding: 0;
+  }
+  .vm-panel {
+    padding: 100px 60px;
+  }
+  .vm-panel:first-child {
+    border-right: 1px solid rgba(255,255,255,0.08);
+  }
+  .vm-label {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 40px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .vm-label::before { content: ''; width: 30px; height: 1px; background: var(--red); }
+  .vm-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    line-height: 0.9;
+    margin-bottom: 40px;
+    color: white;
+  }
+  .vm-body {
+    font-size: 17px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 48px;
+  }
+  .mission-list { list-style: none; }
+  .mission-item {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    display: flex; gap: 20px; align-items: flex-start;
+    color: rgba(255,255,255,0.7);
+    font-size: 15px;
+    line-height: 1.6;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.5s, transform 0.5s;
+  }
+  .mission-item.visible { opacity: 1; transform: translateX(0); }
+  .mission-item:nth-child(1) { transition-delay: 0.05s; }
+  .mission-item:nth-child(2) { transition-delay: 0.15s; }
+  .mission-item:nth-child(3) { transition-delay: 0.25s; }
+  .mission-item:nth-child(4) { transition-delay: 0.35s; }
+  .mission-item:nth-child(5) { transition-delay: 0.45s; }
+  .mission-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    line-height: 1;
+    color: var(--red);
+    flex-shrink: 0;
+    width: 32px;
+  }
+
+  /* SERVICES */
+  .services { background: var(--off-white); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-top: 60px;
+  }
+  .service-card {
+    background: white;
+    padding: 48px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s;
+    cursor: default;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s, transform 0.6s, background 0.4s;
+  }
+  .service-card.visible { opacity: 1; transform: translateY(0); }
+  .service-card:nth-child(1) { transition-delay: 0.1s; }
+  .service-card:nth-child(2) { transition-delay: 0.2s; }
+  .service-card:nth-child(3) { transition-delay: 0.3s; }
+  .service-card:nth-child(4) { transition-delay: 0.4s; }
+  .service-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--red);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s;
+  }
+  .service-card:hover { background: var(--black); }
+  .service-card:hover .service-name { color: white; }
+  .service-card:hover .service-body { color: rgba(255,255,255,0.5); }
+  .service-card:hover .service-icon { background: var(--red); color: white; }
+  .service-card:hover::after { transform: scaleX(1); }
+  .service-icon {
+    width: 52px; height: 52px;
+    background: var(--off-white);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    margin-bottom: 28px;
+    transition: background 0.3s, color 0.3s;
+  }
+  .service-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    line-height: 1;
+    color: var(--light-gray);
+    position: absolute;
+    top: 20px; right: 20px;
+    transition: color 0.3s;
+  }
+  .service-card:hover .service-num { color: rgba(255,255,255,0.06); }
+  .service-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    margin-bottom: 12px;
+    transition: color 0.3s;
+  }
+  .service-body { font-size: 14px; line-height: 1.7; color: #666; transition: color 0.3s; }
+
+  /* WHY US */
+  .why {
+    background: var(--off-white);
+    padding-top: 0;
+  }
+  .why-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+    margin-top: 60px;
+  }
+  .why-card {
+    background: white;
+    padding: 52px 48px;
+    display: flex; gap: 28px;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s, transform 0.6s;
+  }
+  .why-card.visible { opacity: 1; transform: translateY(0); }
+  .why-card:nth-child(1) { transition-delay: 0.1s; }
+  .why-card:nth-child(2) { transition-delay: 0.2s; }
+  .why-card:nth-child(3) { transition-delay: 0.3s; }
+  .why-card:nth-child(4) { transition-delay: 0.4s; }
+  .why-card:hover { z-index: 1; }
+  .why-num-bg {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 120px;
+    line-height: 1;
+    color: var(--light-gray);
+    position: absolute;
+    bottom: -20px; right: 20px;
+    transition: color 0.3s;
+  }
+  .why-card:hover .why-num-bg { color: #e0ddd7; }
+  .why-icon-wrap {
+    width: 48px; height: 48px;
+    background: var(--red);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 20px;
+    color: white;
+  }
+  .why-content {}
+  .why-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 30px;
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .why-body { font-size: 14px; line-height: 1.75; color: #666; position: relative; }
+
+  /* FACILITIES */
+  .facilities {
+    background: var(--black);
+    color: white;
+  }
+  .facilities .section-title { color: white; }
+  .facilities-flex {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 80px;
+    align-items: start;
+    margin-top: 60px;
+  }
+  .facilities-info {}
+  .facility-item {
+    padding: 28px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .facility-item:first-child { border-top: 1px solid rgba(255,255,255,0.08); }
+  .facility-key {
+    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+  .facility-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    color: white;
+    text-align: right;
+  }
+  .facility-val span { color: var(--red); font-size: 14px; letter-spacing: 1px; font-family: 'DM Sans', sans-serif; display: block; }
+  .bank-info {
+    margin-top: 40px;
+    padding: 28px;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-left: 3px solid var(--red);
+  }
+  .bank-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--red); margin-bottom: 8px; }
+  .bank-name { font-size: 14px; color: rgba(255,255,255,0.6); margin-bottom: 4px; }
+  .bank-num { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 2px; color: white; }
+  .facilities-imgs {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4px;
+  }
+  .fac-img {
+    aspect-ratio: 4/3;
+    background: #1a1a1a;
+    overflow: hidden;
+  }
+  .fac-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; transition: opacity 0.4s, transform 0.6s; filter: grayscale(30%); }
+  .fac-img:hover img { opacity: 1; transform: scale(1.05); filter: grayscale(0); }
+
+  /* CTA */
+  .cta-section {
+    background: var(--red);
+    padding: 120px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: 'SIS';
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 400px;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(255,255,255,0.04);
+    line-height: 1;
+    pointer-events: none;
+    letter-spacing: -20px;
+  }
+  .cta-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(56px, 7vw, 100px);
+    line-height: 0.9;
+    color: white;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .cta-sub {
+    font-size: 17px;
+    color: rgba(255,255,255,0.7);
+    max-width: 480px;
+    margin: 0 auto 48px;
+    line-height: 1.7;
+    position: relative;
+  }
+  .btn-white {
+    background: white;
+    color: var(--red);
+    padding: 18px 48px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    border: none; cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 2px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+  }
+  .btn-white:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,0.2); }
+
+  /* FOOTER */
+  footer {
+    background: var(--black);
+    padding: 80px 60px 40px;
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 40px;
+  }
+  .footer-brand {}
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    color: white;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .footer-desc { font-size: 14px; color: rgba(255,255,255,0.4); line-height: 1.7; margin-bottom: 24px; }
+  .footer-col-title {
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 20px;
+  }
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 10px; }
+  .footer-links a {
+    font-size: 14px; color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-links a:hover { color: white; }
+  .footer-address {
+    font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.8;
+  }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px; color: rgba(255,255,255,0.25);
+    letter-spacing: 0.5px;
+  }
+  .footer-bottom span { color: var(--red); }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s var(--transition), transform 0.8s var(--transition);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* HAMBURGER */
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    cursor: pointer; padding: 4px; z-index: 200; background: none; border: none;
+  }
+  .hamburger span {
+    display: block; width: 26px; height: 2px;
+    background: var(--black); border-radius: 2px; transition: all 0.3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-menu {
+    position: fixed; inset: 0;
+    background: var(--black); z-index: 150;
+    flex-direction: column; align-items: center; justify-content: center;
+    gap: 4px; opacity: 0; pointer-events: none;
+    transition: opacity 0.4s; display: flex;
+  }
+  .mobile-menu.open { opacity: 1; pointer-events: all; }
+  .mobile-menu a {
+    font-family: 'Bebas Neue', sans-serif; font-size: 52px;
+    letter-spacing: 3px; color: white; text-decoration: none;
+    transition: color 0.3s; line-height: 1.15;
+  }
+  .mobile-menu a:hover, .mobile-menu a:active { color: var(--red); }
+  .mobile-menu .mobile-cta {
+    margin-top: 20px; background: var(--red); color: white !important;
+    padding: 14px 48px; font-size: 28px; border-radius: 2px;
+  }
+
+  
+
+  /* WHATSAPP FLOAT */
+  .wa-float {
+    position: fixed; bottom: 28px; right: 28px;
+    width: 60px; height: 60px; background: #25D366; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 500; text-decoration: none;
+    box-shadow: 0 8px 32px rgba(37,211,102,0.4);
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: waPulse 2.5s infinite;
+  }
+  .wa-float:hover { transform: scale(1.1); box-shadow: 0 12px 40px rgba(37,211,102,0.55); }
+  .wa-float svg { width: 30px; height: 30px; fill: white; }
+  .wa-tooltip {
+    position: absolute; right: 70px; background: white; color: var(--black);
+    padding: 8px 14px; border-radius: 6px; font-size: 13px; font-weight: 500;
+    white-space: nowrap; box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    opacity: 0; transform: translateX(8px); transition: opacity 0.3s, transform 0.3s;
+    pointer-events: none;
+  }
+  .wa-float:hover .wa-tooltip { opacity: 1; transform: translateX(0); }
+  @keyframes waPulse {
+    0%, 100% { box-shadow: 0 8px 32px rgba(37,211,102,0.4); }
+    50% { box-shadow: 0 8px 48px rgba(37,211,102,0.7); }
+  }
+
+  /* MOBILE */
+  @media (max-width: 900px) {
+    nav { padding: 18px 20px; mix-blend-mode: normal; background: rgba(245,243,239,0.97); backdrop-filter: blur(12px); }
+    nav.scrolled { padding: 14px 20px; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+
+    .hero { grid-template-columns: 1fr; min-height: 100svh; }
+    .hero-right { display: none; }
+    .hero-left { padding: 100px 24px 64px; min-height: 100svh; }
+    .hero-title { font-size: clamp(52px, 13vw, 80px); }
+    .hero-sub { font-size: 15px; max-width: 100%; }
+    .hero-actions { flex-direction: column; align-items: flex-start; gap: 16px; }
+
+    section { padding: 72px 20px; }
+
+    .about { grid-template-columns: 1fr; gap: 0; padding: 72px 20px; }
+    .about-img-grid { display: none; }
+
+    .vision-mission { grid-template-columns: 1fr; }
+    .vm-panel { padding: 64px 20px; }
+    .vm-panel:first-child { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .vm-title { font-size: 56px; }
+
+    .services-grid { grid-template-columns: 1fr 1fr; gap: 2px; }
+
+    .why-grid { grid-template-columns: 1fr; }
+    .why-card { padding: 36px 28px; }
+
+    .facilities-flex { grid-template-columns: 1fr; gap: 48px; }
+    .facilities-imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+    .fac-img { aspect-ratio: 1; }
+
+    .cta-section { padding: 80px 20px; }
+    .cta-section::before { font-size: 180px; }
+
+    .contact-form { padding: 0 4px; }
+    .form-row { grid-template-columns: 1fr; }
+
+    footer { padding: 60px 20px 32px; }
+    .footer-top { grid-template-columns: 1fr; gap: 36px; }
+    .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+
+    body { cursor: auto; }
+    .cursor, .cursor-ring { display: none; }
+
+    .wa-float { bottom: 20px; right: 20px; width: 54px; height: 54px; }
+  }
+
+  @media (max-width: 520px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .hero-title { font-size: 54px; }
+    .section-title { font-size: 40px; }
+    .vm-title { font-size: 46px; }
+    nav { padding: 16px 16px; }
+    section { padding: 60px 16px; }
+    .vm-panel { padding: 56px 16px; }
+    .cta-section { padding: 72px 16px; }
+    footer { padding: 48px 16px 28px; }
+  }
+
+  /* Hero image placeholder styling */
+  .img-placeholder { background: #ddd; width: 100%; height: 100%; }
+</style>
+</head>
+<body>
+
+<!-- Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <div class="logo-badge">SIS</div>
+    PT. Sahabat Inda Sejati
+  </a>
+  <ul class="nav-links">
+    <li><a href="#tentang">Tentang</a></li>
+    <li><a href="#visi">Visi & Misi</a></li>
+    <li><a href="#layanan">Layanan</a></li>
+    <li><a href="https://wa.me/6282276443535" target="_blank">Fasilitas</a></li>
+    <li><a href="https://wa.me/6282276443535" target="_blank" class="nav-cta">Hubungi Kami</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#tentang" class="menu-link">Tentang</a>
+  <a href="#visi" class="menu-link">Visi & Misi</a>
+  <a href="#layanan" class="menu-link">Layanan</a>
+  <a href="https://wa.me/6282276443535" target="_blank" class="menu-link">Fasilitas</a>
+  <a href="https://wa.me/6282276443535" target="_blank" class="menu-link mobile-cta">Hubungi Kami</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" style="padding:0;">
+  <div class="hero-left">
+    <div class="hero-eyebrow">PT Sahabat Inda Sejati · Berdiri 2023</div>
+    <h1 class="hero-title">
+      Distribusi<br><span>Tanpa</span><br>Kompromi.
+    </h1>
+    <p class="hero-sub">
+      Mitra distribusi kebutuhan pokok, makanan, minuman, dan tembakau yang handal, profesional, dan terpercaya untuk para pelaku usaha retail di seluruh Indonesia.
+    </p>
+    <div class="hero-actions">
+      <a href="#layanan" class="btn-primary">Lihat Layanan</a>
+      <a href="#tentang" class="btn-ghost">Pelajari lebih lanjut <span class="arrow">→</span></a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="stat-number">450</div>
+        <div class="stat-label">m² Gudang</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">4+</div>
+        <div class="stat-label">Kategori Produk</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Quality Control</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">2023</div>
+        <div class="stat-label">Tahun Berdiri</div>
+      </div>
+    </div>
+    <p class="hero-tagline">
+      "Kami siap menjadi mitra terpercaya Anda dalam solusi distribusi yang handal, profesional, dan terpercaya."
+    </p>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item"><span class="ticker-dot"></span>Barang Kebutuhan Pokok</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Makanan & Minuman</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Tembakau</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Distribusi Cepat & Tepat</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Quality Control</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Mitra Terpercaya</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Barang Kebutuhan Pokok</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Makanan & Minuman</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Tembakau</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Distribusi Cepat & Tepat</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Quality Control</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Mitra Terpercaya</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="tentang">
+  <div class="about-img-grid">
+    <div class="about-img">
+      <img src="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=400&q=80" alt="Warehouse" />
+    </div>
+    <div class="about-img" style="margin-top:0; margin-bottom:40px;">
+      <img src="https://images.unsplash.com/photo-1586528116493-a029325540fa?w=400&q=80" alt="Distribution" />
+    </div>
+  </div>
+  <div>
+    <div class="section-label reveal">Tentang Kami</div>
+    <h2 class="section-title reveal">PT. Sahabat<br><span>Inda</span><br>Sejati.</h2>
+    <p class="about-body reveal">
+      Didirikan pada 9 Agustus 2023, PT Sahabat Inda Sejati merupakan pionir di industri distribusi kebutuhan pokok. Kami berdedikasi untuk menghadirkan solusi unggulan dalam mendistribusikan barang kebutuhan pokok, makanan, minuman, dan tembakau kepada pemilik toko dan warung retail.
+    </p>
+    <div class="about-highlight reveal">
+      "Kami telah membentuk hubungan kemitraan jangka panjang yang kuat — menjadikan kami garda terdepan dalam memastikan pasokan barang selalu tersedia."
+    </div>
+    <p class="about-body reveal">
+      Tim kami terdiri dari orang-orang yang berkomitmen, visioner, dan senantiasa siap menghadapi berbagai tantangan. Manajemen dan tim lapangan kami selalu menjaga tinggi integritas — karena integritas adalah fondasi bisnis kami.
+    </p>
+  </div>
+</section>
+
+<!-- VISION & MISSION -->
+<section class="vision-mission" id="visi" style="padding:0;">
+  <div class="vm-panel">
+    <div class="vm-label">Visi</div>
+    <div class="vm-title">Pionir<br>Distribusi<br>Terbaik.</div>
+    <p class="vm-body">
+      Menjadi pionir di industri distribusi kebutuhan barang pokok, makanan, minuman, dan tembakau yang menyediakan solusi distribusi terbaik, terdepan, serta terpercaya di Indonesia.
+    </p>
+  </div>
+  <div class="vm-panel">
+    <div class="vm-label">Misi</div>
+    <div class="vm-title">Lima<br>Pilar<br>Kami.</div>
+    <ul class="mission-list">
+      <li class="mission-item">
+        <span class="mission-num">01</span>
+        <span>Menyediakan produk kebutuhan pokok dan tembakau berkualitas tinggi dengan distribusi yang cepat & tepat.</span>
+      </li>
+      <li class="mission-item">
+        <span class="mission-num">02</span>
+        <span>Memberikan pelayanan pelanggan yang unggul, dengan respons cepat terhadap setiap permintaan.</span>
+      </li>
+      <li class="mission-item">
+        <span class="mission-num">03</span>
+        <span>Melaksanakan pengembangan SDM karyawan dan meningkatkan kesejahteraan mereka.</span>
+      </li>
+      <li class="mission-item">
+        <span class="mission-num">04</span>
+        <span>Menjalin kerja sama erat dengan pemasok, pelanggan, serta mitra bisnis untuk meningkatkan kredibilitas perusahaan.</span>
+      </li>
+      <li class="mission-item">
+        <span class="mission-num">05</span>
+        <span>Melakukan inovasi berkelanjutan dalam industri distribusi untuk meningkatkan kualitas layanan.</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="layanan">
+  <div class="section-label reveal">Layanan Kami</div>
+  <h2 class="section-title reveal">Apa Yang<br>Kami <span>Distribusikan.</span></h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <div class="service-icon">🛒</div>
+      <div class="service-name">Barang Kebutuhan Pokok</div>
+      <p class="service-body">Distribusi berbagai jenis barang kebutuhan pokok termasuk beras, gula, minyak, dan masih banyak lagi ke seluruh jaringan retail kami.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-icon">🍜</div>
+      <div class="service-name">Makanan</div>
+      <p class="service-body">Produk dan layanan distribusi makanan, minuman, dan berbagai jenis makanan ringan (snack) dari berbagai merek terkemuka.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-icon">💧</div>
+      <div class="service-name">Minuman</div>
+      <p class="service-body">Layanan produk minuman berkualitas dengan jasa pengiriman yang efektif dan efisien, mencakup berbagai jenis air mineral dan minuman kemasan.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <div class="service-icon">📦</div>
+      <div class="service-name">Tembakau</div>
+      <p class="service-body">Berbagai merek tembakau terkemuka dengan layanan distribusi handal untuk memenuhi permintaan pasar yang berkembang dan dinamis.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why">
+  <div class="section-label reveal">Mengapa Pilih Kami</div>
+  <h2 class="section-title reveal">Empat Alasan<br>Memilih <span>SIS.</span></h2>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon-wrap">✓</div>
+      <div class="why-content">
+        <div class="why-title">Kualitas Terbaik</div>
+        <p class="why-body">Kami menyediakan barang-barang bermutu tinggi. Kami rutin melakukan quality control demi memastikan barang/produk dalam keadaan sempurna, tanpa cacat.</p>
+      </div>
+      <div class="why-num-bg">1</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon-wrap">🤝</div>
+      <div class="why-content">
+        <div class="why-title">Handal & Berpengalaman</div>
+        <p class="why-body">Kami telah membangun reputasi sebagai mitra distribusi yang handal dan profesional, dengan pengalaman bekerja sama bersama berbagai mitra bisnis terkemuka.</p>
+      </div>
+      <div class="why-num-bg">2</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon-wrap">🌐</div>
+      <div class="why-content">
+        <div class="why-title">Jangkauan Luas</div>
+        <p class="why-body">Jaringan distribusi kami yang luas memungkinkan kami melayani pelanggan baik di daerah desa maupun perkotaan secara merata dan konsisten.</p>
+      </div>
+      <div class="why-num-bg">3</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon-wrap">⭐</div>
+      <div class="why-content">
+        <div class="why-title">Pelayanan Unggul</div>
+        <p class="why-body">Tim pelayanan pelanggan kami siap mendengarkan kebutuhan Anda. Kami juga menyediakan aplikasi Ayo SRC yang memungkinkan pemesanan jasa antar barang melalui aplikasi.</p>
+      </div>
+      <div class="why-num-bg">4</div>
+    </div>
+  </div>
+</section>
+
+<!-- FACILITIES -->
+<section class="facilities" id="fasilitas">
+  <div class="section-label reveal">Fasilitas Kami</div>
+  <h2 class="section-title reveal">Infrastruktur<br>Yang <span>Kuat.</span></h2>
+  <div class="facilities-flex">
+    <div class="facilities-info reveal">
+      <div class="facility-item">
+        <div class="facility-key">Luas Gudang</div>
+        <div class="facility-val">450 m²<span>Kapasitas Besar</span></div>
+      </div>
+      <div class="facility-item">
+        <div class="facility-key">Armada</div>
+        <div class="facility-val">Box Double<span>Box L300</span></div>
+      </div>
+      <div class="facility-item">
+        <div class="facility-key">Kendaraan</div>
+        <div class="facility-val">Hilux Pickup<span>Siap Antar</span></div>
+      </div>
+      <div class="facility-item">
+        <div class="facility-key">Berdiri</div>
+        <div class="facility-val">09/08/2023<span>Sumatera Selatan</span></div>
+      </div>
+      <div class="bank-info">
+        <div class="bank-label">Rekening Resmi</div>
+        <div class="bank-name">Bank Mandiri — PT Sahabat Inda Sejati</div>
+        <div class="bank-num">112-0020-9305-12</div>
+      </div>
+    </div>
+    <div class="facilities-imgs">
+      <div class="fac-img">
+        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&q=80" alt="Warehouse interior" />
+      </div>
+      <div class="fac-img">
+        <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=600&q=80" alt="Warehouse storage" />
+      </div>
+      <div class="fac-img">
+        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=600&q=80" alt="Delivery trucks" />
+      </div>
+      <div class="fac-img">
+        <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=600&q=80" alt="Operations" />
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <div class="logo-badge">SIS</div>
+        PT. Sahabat Inda Sejati
+      </div>
+      <p class="footer-desc">
+        Distribusi kebutuhan pokok, makanan, minuman, dan tembakau yang handal, profesional, dan terpercaya. Melayani pemilik toko dan warung retail di seluruh Indonesia.
+      </p>
+    </div>
+    <div>
+      <div class="footer-col-title">Navigasi</div>
+      <ul class="footer-links">
+        <li><a href="#tentang">Tentang Kami</a></li>
+        <li><a href="#visi">Visi & Misi</a></li>
+        <li><a href="#layanan">Layanan</a></li>
+        <li><a href="https://wa.me/6282276443535" target="_blank">Fasilitas</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Layanan</div>
+      <ul class="footer-links">
+        <li><a href="#">Kebutuhan Pokok</a></li>
+        <li><a href="#">Makanan & Snack</a></li>
+        <li><a href="#">Minuman</a></li>
+        <li><a href="#">Tembakau</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Kontak</div>
+      <p class="footer-address">
+        Jl. Lintas Timur Dusun IV,<br>Desa Tugupagung,<br>Kecamatan Lempuing,<br>Kab. Ogan Komering Ilir,<br>Sumatera Selatan<br><br>
+        <strong style="color:rgba(255,255,255,0.5);">Bank Mandiri</strong><br>
+        112-0020-9305-12
+      </p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2024 PT Sahabat Inda Sejati. All rights reserved.</div>
+    <div>Made with ❤️ for <span>SIS</span></div>
+  </div>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+  });
+
+  function animRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animRing);
+  }
+  animRing();
+
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.width = '20px';
+      cursor.style.height = '20px';
+      ring.style.width = '60px';
+      ring.style.height = '60px';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.width = '12px';
+      cursor.style.height = '12px';
+      ring.style.width = '40px';
+      ring.style.height = '40px';
+    });
+  });
+
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Intersection observer for reveals
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal, .stat-card, .service-card, .why-card, .mission-item').forEach(el => {
+    observer.observe(el);
+  });
+
+  // Hero stats counter animation
+  function animateCounter(el, target, suffix = '') {
+    let start = 0;
+    const duration = 1800;
+    const startTime = performance.now();
+    function update(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 4);
+      const current = Math.round(start + (target - start) * eased);
+      el.textContent = current + suffix;
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+
+  // Animate stat cards when visible
+  const statsObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const nums = [
+          { el: document.querySelectorAll('.stat-number')[0], val: 450, suffix: '' },
+          { el: document.querySelectorAll('.stat-number')[1], val: 4, suffix: '+' },
+          { el: document.querySelectorAll('.stat-number')[2], val: 100, suffix: '%' },
+          { el: document.querySelectorAll('.stat-number')[3], val: 2023, suffix: '' },
+        ];
+        nums.forEach(({ el, val, suffix }) => {
+          if (el) animateCounter(el, val, suffix);
+        });
+        statsObs.disconnect();
+      }
+    });
+  }, { threshold: 0.5 });
+
+  const statsEl = document.querySelector('.hero-stats');
+  if (statsEl) statsObs.observe(statsEl);
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        closeMobileMenu();
+        setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+      }
+    });
+  });
+
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  function closeMobileMenu() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+</script>
+<!-- WhatsApp Float -->
+<a href="https://wa.me/6282276443535" target="_blank" class="wa-float" aria-label="Chat WhatsApp">
+  <div class="wa-tooltip">Chat via WhatsApp</div>
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+</body>
+</html>
